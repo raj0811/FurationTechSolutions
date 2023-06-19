@@ -74,3 +74,22 @@ module.exports.updateItem=async(req,res)=>{
         res.send(error)
     }
 }
+
+// delete item
+
+module.exports.deleteItem=async(req,res)=>{
+    try{
+        const itemId=req.params.id
+
+        const deleteItem = await Item.findByIdAndRemove(itemId);
+       
+        if (!deleteItem) {
+            return res.status(404).json({ error: 'Item not found' });
+          }
+
+        res.send('item deleted')
+
+    }catch(error){
+        res.send(error)
+    }
+}

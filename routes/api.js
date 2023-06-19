@@ -14,4 +14,8 @@ router.get('/items/:id',isAuthenticatedUser,itemConroller.selectItem)
 
 // update items with id
 router.put('/items/:id',isAuthenticatedUser,itemConroller.updateItem)
+
+router.delete('/items/:id',isAuthenticatedUser,itemConroller.deleteItem)
+
+
 module.exports = router;
