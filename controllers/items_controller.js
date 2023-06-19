@@ -37,3 +37,40 @@ module.exports.showItems=async(req,res)=>{
         res.send(error)
     }
 }
+
+module.exports.selectItem=async(req,res)=>{
+    try{
+        const itemId=req.params.id
+
+        const item=await Item.findById(itemId)
+        if(!item){
+            res.send('No items available')
+        }
+
+        res.send(item)
+    }catch(error){
+        res.send(error)
+    }
+}
+
+module.exports.updateItem=async(req,res)=>{
+    try{
+        const itemId=req.params.id
+        const {name, description}=req.body
+        const update={
+            name,
+            description
+        }
+        
+        const updatedItem = await Item.findByIdAndUpdate(itemId, update, { new: true });
+
+        if (!updatedItem) {
+            return res.status(404).json({ error: 'Item not found' });
+          }
+      
+          res.json({ item: updatedItem });
+
+    }catch(error){
+        res.send(error)
+    }
+}
