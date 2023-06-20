@@ -42,7 +42,8 @@ POST `/user/login` Login User
 ![Alt text](https://i.ibb.co/PmxRQ5n/signup-result.png "Optional title")
 
 - If signup with already Taken email
-![Alt text](![Alt text](https://i.ibb.co/mTX446y/ss1.png "Optional title") "Optional title")
+
+![Alt text](https://i.ibb.co/mTX446y/ss1.png "Optional title")
 
 - Login
 ![Alt text](https://i.ibb.co/sHmk996/login.png "Optional title")
@@ -72,7 +73,7 @@ POST `/user/login` Login User
 - Update item PUT `/api/items/:id`
 ![Alt text](https://i.ibb.co/WPRYCXz/update.png "Optional title")
 
--Delete item DELETE `/api/items/:id`
+- Delete item DELETE `/api/items/:id`
 ![Alt text](https://i.ibb.co/WPRYCXz/update.png "Optional title")
 
 
