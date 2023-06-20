@@ -6,8 +6,17 @@ module.exports.signup=async(req,res)=>{
     try{
         const { email, password, name }=req.body
 
+      
+
+        if(!email || !password || !name){
+          res.send({
+            success: false,
+            msg: "required field missing "
+          })
+        }
+
         // Check if user with the same email already exists
-        console.log(email,password,name);
+        
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
@@ -19,7 +28,7 @@ module.exports.signup=async(req,res)=>{
 
         const token = jwt.sign({ userId: user._id }, 'your_secret_key');
         res.json({ token, user });
-
+// 
     }catch(error){
         res.send(error)
     }
@@ -29,6 +38,13 @@ module.exports.signup=async(req,res)=>{
 module.exports.login = async (req, res) => {
     try {
       const { email, password } = req.body;
+
+      if(!email || !password ){
+        res.send({
+          success: false,
+          msg: "required field missing "
+        })
+      }
   
       // Check if user with the provided email exists
       const user = await User.findOne({ email });

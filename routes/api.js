@@ -8,6 +8,7 @@ const {isAuthenticatedUser}=require('../config/authController')
 //  create item
 router.post('/items',isAuthenticatedUser,itemConroller.addItem)
 // show all items
+// use this on postman /api/items/?page=1&limit=2 for pagination
 router.get('/items',isAuthenticatedUser,itemConroller.showItems)
 // show one specific item by id
 router.get('/items/:id',isAuthenticatedUser,itemConroller.selectItem)

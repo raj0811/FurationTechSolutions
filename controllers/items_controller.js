@@ -1,12 +1,12 @@
 const Item = require('../models/items')
 
+// Add item to database
 module.exports.addItem=async(req,res)=>{
     try{
 
         const {name , description}=req.body;
         const userId = req.user.userId;
-        // const userId = req.user._id;
-        console.log(userId);
+        
 
 
         const item=new Item({name, description,user: userId});
@@ -20,10 +20,11 @@ module.exports.addItem=async(req,res)=>{
 }
 
 
+//  Show All items 
 module.exports.showItems = async (req, res) => {
     try {
       const userId = req.user.userId;
-      console.log(userId);
+      
   
       const page = parseInt(req.query.page) || 1; // Current page number, default is 1
       const limit = parseInt(req.query.limit) || 10; // Number of items per page, default is 10
@@ -53,33 +54,7 @@ module.exports.showItems = async (req, res) => {
   };
   
 
-module.exports.showItems0=async(req,res)=>{
-    try{
-
-        const userId=req.user.userId
-        const page = parseInt(req.query.page) || 1; // Current page number, default is 1
-        const limit = parseInt(req.query.limit) || 10; // Number of items per page, default is 10
-
-
-        const startIndex = (page - 1) * limit; // Calculate the starting index of items for the current page
-
-                
-
-        console.log(userId);
-
-        const items= await Item.find({ user: userId })
-
-        if (items.length === 0) {
-            return res.send('No items available');
-          }
-
-        res.send(items)
-
-    }catch(error){
-        res.send(error)
-    }
-}
-
+//  show one specific item by id
 module.exports.selectItem=async(req,res)=>{
     try{
         const itemId=req.params.id
@@ -95,6 +70,7 @@ module.exports.selectItem=async(req,res)=>{
     }
 }
 
+// Update item
 module.exports.updateItem=async(req,res)=>{
     try{
         const itemId=req.params.id

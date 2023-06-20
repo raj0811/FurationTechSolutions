@@ -2,8 +2,10 @@ const mongoose = require('mongoose')
 
 
 mongoose.set('strictQuery', false);
-// mongoose.connect('mongodb+srv://raj0811:FdxT9VYDCysSegXL@cluster0.frccytz.mongodb.net/?retryWrites=true&w=majority');
-mongoose.connect('mongodb://localhost/Furation');
+mongoose.connect(process.env.MONGO_DB_URL);
+console.log(process.env.MONGO_DB_URL);
+// mongoose.connect('mongodb://localhost/Furation');
+
 
 
 const db = mongoose.connection;
