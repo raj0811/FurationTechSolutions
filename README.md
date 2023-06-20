@@ -43,7 +43,7 @@ POST `/user/login` Login User
 
 - If signup with already Taken email <br>
 
-![Alt text](https://i.ibb.co/mTX446y/ss1.png "Optional title")
+![Alt text](https://i.ibb.co/JR5kXx5/signup-again-err.png "Optional title")
 
 - Login <br>
 ![Alt text](https://i.ibb.co/sHmk996/login.png "Optional title")
