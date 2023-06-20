@@ -20,9 +20,51 @@ module.exports.addItem=async(req,res)=>{
 }
 
 
-module.exports.showItems=async(req,res)=>{
+module.exports.showItems = async (req, res) => {
+    try {
+      const userId = req.user.userId;
+      console.log(userId);
+  
+      const page = parseInt(req.query.page) || 1; // Current page number, default is 1
+      const limit = parseInt(req.query.limit) || 10; // Number of items per page, default is 10
+  
+      const startIndex = (page - 1) * limit; // Calculate the starting index of items for the current page
+  
+      const itemsCount = await Item.countDocuments({ user: userId }); // Total number of items for the user
+  
+      const totalPages = Math.ceil(itemsCount / limit); // Calculate the total number of pages
+  
+      const items = await Item.find({ user: userId })
+        .skip(startIndex)
+        .limit(limit);
+  
+      if (items.length === 0) {
+        return res.send('No items available');
+      }
+  
+      res.send({
+        items,
+        currentPage: page,
+        totalPages,
+      });
+    } catch (error) {
+      res.send(error);
+    }
+  };
+  
+
+module.exports.showItems0=async(req,res)=>{
     try{
+
         const userId=req.user.userId
+        const page = parseInt(req.query.page) || 1; // Current page number, default is 1
+        const limit = parseInt(req.query.limit) || 10; // Number of items per page, default is 10
+
+
+        const startIndex = (page - 1) * limit; // Calculate the starting index of items for the current page
+
+                
+
         console.log(userId);
 
         const items= await Item.find({ user: userId })
